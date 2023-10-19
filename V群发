@@ -1,0 +1,97 @@
+Dim 读群名,dictRet,峨眉0,无名1,碧潭2,如梦3,春风4,鸟语5,选群,切割数组群,复选框
+Dim 总群
+Window.SetActive(@ui"窗口_微信")
+峨眉0 = ["峨眉山一", 
+"峨眉山二", 
+"峨眉山三",
+ "峨眉山四",
+ "峨眉山五", 
+"峨眉山六", 
+"无名二群", 
+"峨眉山七"]
+
+无名1 = [ "无名一群",
+"无名二群",
+"无名三群"]
+
+碧潭2 = ["碧潭飘雪一",
+"碧潭飘雪二",
+"碧潭飘雪三",
+"碧潭飘雪四",
+"碧潭飘雪五",
+"碧潭飘雪六",
+"碧潭飘雪七",
+"碧潭飘雪八",
+"碧潭飘雪九",
+"碧潭飘雪十"]
+
+如梦3 = ["如梦初醒六群",
+"如梦初醒七群",
+"如梦初醒八群",
+"如梦初醒九群",
+"如梦初醒十群"]
+
+春风4 = ["春风十里一群",
+"春风十里二群",
+"春风十里三群",
+"春风十里四群",
+"春风十里五群",
+"春风十里六群",
+"春风十里七群",
+"春风十里八群",
+"春风十里九群",
+"春风十里十群"]
+
+鸟语5 = ["鸟语林一群",
+"鸟语林二群",
+"鸟语林三群",
+"鸟语林四群",
+"鸟语林五群",
+"鸟语林六群",
+"鸟语林七群",
+"鸟语林八群",
+"鸟语林九群",
+"鸟语林十群"]
+dictRet = Dialog.UDFDialog("选择群名",@res"1659973672745.json",{},{"iTimeout": 3, "strTimoutClick": "ok", "bInterruptTimeout": true})
+选群=dictRet["复选框"]
+TracePrint(选群)
+总群 = []
+For Each 切割数组群 In 选群
+
+If 切割数组群="0" 
+总群 = concat(总群,峨眉0)
+End If
+If 切割数组群="1"
+
+总群 = concat(总群,无名1)
+End If
+If 切割数组群="2"
+
+总群 = concat(总群,碧潭2)
+End If
+If 切割数组群="3"
+
+总群 = concat(总群,如梦3)
+End If
+If 切割数组群="4"
+
+总群 = concat(总群,春风4)
+End If
+
+If 切割数组群="5"
+
+总群 = concat(总群,鸟语5)
+End If
+Next
+TracePrint(总群)
+
+Clipboard.SetImage('''G:\个人\2022_File\tb单.jpg''')
+For Each 读群名 In 总群
+TracePrint(读群名)
+
+Keyboard.InputText(@ui"可编辑文本_搜索1",读群名,true,20,10000,{"bContinueOnError": false, "iDelayAfter": 300, "iDelayBefore": 0, "bSetForeground": true, "sSimulate": "message", "bValidate": false, "bClickBeforeInput": false})
+Keyboard.PressKey(@ui"可编辑文本_搜索1","Enter",20,10000,{"bContinueOnError": false, "iDelayAfter": 0, "iDelayBefore": 200, "bSetForeground": true, "sSimulate": "simulate", "sKeyModifiers": [], "bClickBeforeInput": false})
+Mouse.Action(@ui"可编辑文本_输入","left","click",10000,{"bContinueOnError": false, "iDelayAfter": 300, "iDelayBefore": 200, "bSetForeground": true, "sCursorPosition": "Center", "iCursorOffsetX": 0, "iCursorOffsetY": 0, "sKeyModifiers": [],"sSimulate": "simulate", "bMoveSmoothly": false})
+Keyboard.Press("V", "press", ["Ctrl"],{"iDelayAfter": 0, "iDelayBefore": 200, "sSimulate": "simulate"})
+Keyboard.Press("Enter", "press", [],{"iDelayAfter": 50, "iDelayBefore": 50, "sSimulate": "simulate"})
+Next
