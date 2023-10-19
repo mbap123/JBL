@@ -1,0 +1,131 @@
+//复制到粘贴板依次写入数组再回到表格
+
+Dim drr,bianhao,dizhi,j,drrRet,arrayData,objExcelWorkBook,颜色集合,数量,arrayRet,hedui,sRet,pingjia,zzz,ccc
+objExcelWorkBook = Excel.BindBook("0728测试.xlsx")
+颜色集合 = Excel.ReadColumn(objExcelWorkBook,"Sheet1","A1",true)
+数量 = Len(颜色集合)
+TracePrint(数量)
+arrayRet = []
+For Each sku In 颜色集合
+Clipboard.SetText(sku)
+// Keyboard.InputText({
+// 	"wnd":[
+// 		{
+// 			"cls":"Chrome_WidgetWin_1",
+// 			"title":"*",
+// 			"app":"chrome"
+// 		},
+// 		{
+// 			"cls":"Chrome_RenderWidgetHostHWND",
+// 			"title":"Chrome Legacy Window"
+// 		}
+// 	],
+// 	"html":[
+// 		{
+// 			"tag":"INPUT",
+// 			"id":"search"
+// 		}
+// 	]
+// },sku,true,20,10000,{"bContinueOnError": false, "iDelayAfter": 300, "iDelayBefore": 500, "bSetForeground": true, "sSimulate": "message", "bValidate": false, "bClickBeforeInput": false})
+Mouse.Action({
+	"wnd":[
+		{
+			"cls":"StandardFrame",
+			"title":"爱国者云:梵梵 - 接待中心",
+			"app":"AliWorkbench"
+		},
+		{
+			"cls":"StandardWindow",
+			"ctrlid":1240
+		},
+		{
+			"cls":"StackPanel",
+			"ctrlid":1242
+		},
+		{
+			"cls":"StackPanel",
+			"ctrlid":1244,
+			"idx":1
+		},
+		{
+			"cls":"StandardWindow",
+			"ctrlid":1245
+		},
+		{
+			"cls":"StandardWindow",
+			"ctrlid":1295
+		},
+		{
+			"cls":"StackPanel",
+			"ctrlid":1296
+		},
+		{
+			"cls":"StandardWindow",
+			"ctrlid":1297
+		},
+		{
+			"cls":"StandardWindow",
+			"ctrlid":1309
+		},
+		{
+			"cls":"StandardWindow",
+			"ctrlid":1310
+		},
+		{
+			"cls":"StackPanel",
+			"ctrlid":1163
+		},
+		{
+			"cls":"EditComponent",
+			"ctrlid":1312
+		}
+	]
+},"left","click",10000,{"bContinueOnError": false, "iDelayAfter": 300, "iDelayBefore": 200, "bSetForeground": true, "sCursorPosition": "Center", "iCursorOffsetX": 0, "iCursorOffsetY": 0, "sKeyModifiers": [],"sSimulate": "simulate", "bMoveSmoothly": false})
+Keyboard.Press("A", "press", ["Ctrl"],{"iDelayAfter": 50, "iDelayBefore": 50, "sSimulate": "simulate"})
+
+Keyboard.Press("V", "press", ["Ctrl"],{"iDelayAfter": 300, "iDelayBefore": 200, "sSimulate": "simulate"})
+Keyboard.Press("Enter", "press", [],{"iDelayAfter": 300, "iDelayBefore": 200, "sSimulate": "simulate"})
+hedui = UiElement.Exists({
+	"wnd":[
+		{
+			"cls":"#32770",
+			"app":"AliWorkbench"
+		},
+		{
+			"cls":"SearchContactWnd",
+			"title":"SEARCH_WND",
+			"ctrlid":1443
+		}
+	]
+},{"bContinueOnError":false,"iDelayAfter":50,"iDelayBefore":50})
+If hedui
+ Keyboard.Press("Enter", "press", [],{"iDelayAfter": 300, "iDelayBefore": 200, "sSimulate": "simulate"})
+
+Mouse.Action(@ui"分组1","left","click",10000,{"bContinueOnError": false, "iDelayAfter": 300, "iDelayBefore": 200, "bSetForeground": true, "sCursorPosition": "Center", "iCursorOffsetX": 5, "iCursorOffsetY": 40, "sKeyModifiers": [],"sSimulate": "simulate", "bMoveSmoothly": false})
+sRet = Clipboard.GetText()
+arrayRet = push(arrayRet,[sRet])
+ 
+
+Else 
+	
+arrayRet = push(arrayRet,["",""])
+
+
+
+
+
+End If
+// arrayRet = push(arrayRet,["无","无"])
+
+
+
+next
+zzz=Len(arrayRet)
+ccc=UBound(arrayRet)
+TracePrint(zxz)
+TracePrint(ccc)
+Excel.WriteRow(objExcelWorkBook,"Sheet1","B1",arrayRet,false)
+Excel.SetColumnWidth(objExcelWorkBook,"Sheet1","A1",21,false)
+Excel.SetColumnWidth(objExcelWorkBook,"Sheet1","B1",18,false)
+Excel.SetColumnWidth(objExcelWorkBook,"Sheet1","C1",80,false)
+TracePrint(arrayRet)
