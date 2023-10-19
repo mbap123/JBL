@@ -1,0 +1,524 @@
+Dim brr,objExcelWorkBook,当前,i,工作表名称,工作表数,iRet,isou,isoul,任务数0,任务数,任务数2,任务数1,ishouc,ishoucl,igg,iggl,dTime,t0,t1,day,sRet
+dim arr=[]
+
+day = Dialog.InputBox("往后天数","往后天数","0",false)
+TracePrint(day)
+dTime = Time.Now()
+dTime = Time.DateAdd("d",day,dTime)
+sRet = Time.Format(dTime,"yyyy-mm-dd")
+t0=Time.Timer()
+hWeb = WebBrowser.Create("edge","about:blank",30000,{"bContinueOnError":false,"iDelayAfter":300,"iDelayBefore":200,"sBrowserPath":"","sStartArgs":""})
+objExcelWorkBook = Excel.BindBook("放流量 - 副本.xlsm")
+工作表名称 = Excel.GetSheetsName(objExcelWorkBook)
+工作表数 = UBound(工作表名称)
+Do While 工作表数>3
+当前 = Excel.CurrentSheet(objExcelWorkBook,true)
+brr = Excel.ReadRange(objExcelWorkBook,当前,"A1:D100",true)
+For i = 0 To UBound(brr)
+    If brr[i][0]= ""
+        Break
+    Else 
+    arr = push(arr,brr[i])
+    End If
+Next
+TracePrint(arr)
+tb子链接 = Excel.ReadCell(objExcelWorkBook,当前,"G1",true)
+Clipboard.SetText(tb子链接)
+Rem 执行关键词**************************************************************
+iRet = WebBrowser.GoURL(hWeb,"http://www.rqgongjiang.com/member/tb/ll/appll",true,@ui"块级元素<div>_流量任务",30000,{"bContinueOnError":false,"iDelayAfter":2000,"iDelayBefore":200})
+Mouse.Action({
+	"wnd":[
+		{
+			"cls":"Chrome_WidgetWin_1",
+			"title":"*",
+			"app":"msedge"
+		},
+		{
+			"cls":"Chrome_RenderWidgetHostHWND",
+			"title":"Chrome Legacy Window"
+		}
+	],
+	"html":[
+		{
+			"tag":"INPUT",
+			"type":"text"
+		}
+	]
+},"left","click",10000,{"bContinueOnError": false, "iDelayAfter": 300, "iDelayBefore": 200, "bSetForeground": true, "sCursorPosition": "Center", "iCursorOffsetX": 0, "iCursorOffsetY": 0, "sKeyModifiers": [],"sSimulate": "simulate", "bMoveSmoothly": false})
+Keyboard.Press("V", "press", ["Ctrl"],{"iDelayAfter": 500, "iDelayBefore": 300, "sSimulate": "simulate"})
+Mouse.Action(@ui"标注<label>_开始时间1","left","click",10000,{"bContinueOnError": false, "iDelayAfter": 300, "iDelayBefore": 200, "bSetForeground": true, "sCursorPosition": "Center", "iCursorOffsetX": 0, "iCursorOffsetY": 0, "sKeyModifiers": [],"sSimulate": "simulate", "bMoveSmoothly": false})
+
+Mouse.Action({
+	"wnd":[
+		{
+			"cls":"Chrome_WidgetWin_1",
+			"title":"*",
+			"app":"msedge"
+		},
+		{
+			"cls":"Chrome_RenderWidgetHostHWND",
+			"title":"Chrome Legacy Window"
+		}
+	],
+	"html":[
+		{
+			"tag":"INPUT",
+			"parentid":"__layout",
+			"css-selector":"body>div>div>div>section>section>main>div>div>div>div>div>div>div>div>form>div>div>div>div>div>span>span>div>input"
+		}
+	]
+},"left","click",10000,{"bContinueOnError": false, "iDelayAfter": 300, "iDelayBefore": 200, "bSetForeground": true, "sCursorPosition": "Center", "iCursorOffsetX": 0, "iCursorOffsetY": 0, "sKeyModifiers": [],"sSimulate": "simulate", "bMoveSmoothly": false})
+Keyboard.InputText({
+	"wnd":[
+		{
+			"cls":"Chrome_WidgetWin_1",
+			"title":"*",
+			"app":"msedge"
+		},
+		{
+			"cls":"Chrome_RenderWidgetHostHWND",
+			"title":"Chrome Legacy Window"
+		}
+	],
+	"html":[
+		{
+			"tag":"INPUT",
+			"parentid":"__layout",
+			"css-selector":"body>div>div>div>section>section>main>div>div>div>div>div>div>div>div>form>div>div>div>div>div>span>span>div>input"
+		}
+	]
+},sRet,true,20,10000,{"bContinueOnError": false, "iDelayAfter": 300, "iDelayBefore": 500, "bSetForeground": true, "sSimulate": "message", "bValidate": false, "bClickBeforeInput": false})
+Mouse.Action(@ui"按钮<button>_清除","left","click",10000,{"bContinueOnError": false, "iDelayAfter": 300, "iDelayBefore": 200, "bSetForeground": true, "sCursorPosition": "Center", "iCursorOffsetX": 0, "iCursorOffsetY": 0, "sKeyModifiers": [],"sSimulate": "simulate", "bMoveSmoothly": false})
+Mouse.Action(@ui"按钮<button>_普通","left","click",10000,{"bContinueOnError": false, "iDelayAfter": 300, "iDelayBefore": 200, "bSetForeground": true, "sCursorPosition": "Center", "iCursorOffsetX": 0, "iCursorOffsetY": 0, "sKeyModifiers": [],"sSimulate": "simulate", "bMoveSmoothly": false})
+For isou = 1 To UBound(arr)
+    Mouse.Action(@ui"按钮<button>3","left","click",10000,{"bContinueOnError": false, "iDelayAfter": 0, "iDelayBefore": 50, "bSetForeground": true, "sCursorPosition": "Center", "iCursorOffsetX": 0, "iCursorOffsetY": 0, "sKeyModifiers": [],"sSimulate": "simulate", "bMoveSmoothly": false})
+Next
+isoul=1
+For i = 0 To UBound(arr)
+    Keyboard.InputText({
+	"wnd":[
+		{
+			"cls":"Chrome_WidgetWin_1",
+			"title":"*",
+			"app":"msedge"
+		},
+		{
+			"cls":"Chrome_RenderWidgetHostHWND",
+			"title":"Chrome Legacy Window"
+		}
+	],
+	"html":[
+		{
+			"tag":"INPUT",
+			"type":"text",
+			"css-selector":"body>div>div>div>section>section>main>div>div>div>div>div>div>div>div>form>div>div>div>div>div>div>div>div>div>div>span>div>div>input",
+			"idx":i
+		}
+	]
+},arr[i][0],true,20,10000,{"bContinueOnError": false, "iDelayAfter": 50, "iDelayBefore": 50, "bSetForeground": true, "sSimulate": "message", "bValidate": false, "bClickBeforeInput": false})
+    Keyboard.InputText({
+	"wnd":[
+		{
+			"cls":"Chrome_WidgetWin_1",
+			"title":"*",
+			"app":"msedge"
+		},
+		{
+			"cls":"Chrome_RenderWidgetHostHWND",
+			"title":"Chrome Legacy Window"
+		}
+	],
+	"html":[
+		{
+			"tag":"INPUT",
+			"css-selector":"body>div>div>div>section>section>main>div>div>div>div>div>div>div>div>form>div>div>div>div>div>div>div>div>div>div>span>div>div>input",
+			"idx":isoul
+		}
+	]
+},arr[i][1],true,20,10000,{"bContinueOnError": false, "iDelayAfter": 50, "iDelayBefore": 50, "bSetForeground": true, "sSimulate": "message", "bValidate": false, "bClickBeforeInput": false})
+    isoul=isoul+3
+Next
+
+Mouse.Action({
+	"wnd":[
+		{
+			"cls":"Chrome_WidgetWin_1",
+			"title":"*",
+			"app":"msedge"
+		},
+		{
+			"cls":"Chrome_RenderWidgetHostHWND",
+			"title":"Chrome Legacy Window"
+		}
+	],
+	"html":[
+		{
+			"tag":"BUTTON",
+			"aaname":"1天"
+		}
+	]
+},"left","click",10000,{"bContinueOnError": false, "iDelayAfter": 300, "iDelayBefore": 200, "bSetForeground": true, "sCursorPosition": "Center", "iCursorOffsetX": 0, "iCursorOffsetY": 0, "sKeyModifiers": [],"sSimulate": "simulate", "bMoveSmoothly": false})
+
+// Rem 正则核对************************************************************************************************************************
+// 任务数0 = Text.Get({
+// 	"wnd":[
+// 		{
+// 			"cls":"Chrome_WidgetWin_1",
+// 			"title":"*",
+// 			"app":"msedge"
+// 		},
+// 		{
+// 			"cls":"Chrome_RenderWidgetHostHWND",
+// 			"title":"Chrome Legacy Window"
+// 		}
+// 	],
+// 	"html":[
+// 		{
+// 			"tag":"DIV",
+// 			"parentid":"__layout",
+// 			"css-selector":"body>div>div>div>section>section>main>div>div>div>div>div>div>div>div>div>div>div>div>div>div>div"
+// 		}
+// 	]
+// },10000,{"bContinueOnError":false,"iDelayAfter":300,"iDelayBefore":200,"bSetForeground":true})
+// 任务数 = Regex.FindAll(任务数0,"发布\\s+\\d+")
+// 任务数1 = Regex.FindAll(任务数[0],"\\d+")
+// 任务数2=CInt(任务数1[0])
+// TracePrint(任务数1[0])
+// If 任务数2 >170
+//     iRet = Dialog.MsgBox("数量填写超额","Laiye Automation",0,1,0)
+// End If
+// Rem 正则核对结束************************************************************************************************************************
+
+
+Mouse.Action(@ui"按钮<button>_发布任务1","left","click",10000,{"bContinueOnError": false, "iDelayAfter": 300, "iDelayBefore": 200, "bSetForeground": true, "sCursorPosition": "Center", "iCursorOffsetX": 0, "iCursorOffsetY": 0, "sKeyModifiers": [],"sSimulate": "simulate", "bMoveSmoothly": false})
+
+Mouse.Action(@ui"按钮<button>_确认","left","click",10000,{"bContinueOnError": false, "iDelayAfter": 300, "iDelayBefore": 1000, "bSetForeground": true, "sCursorPosition": "Center", "iCursorOffsetX": 0, "iCursorOffsetY": 0, "sKeyModifiers": [],"sSimulate": "simulate", "bMoveSmoothly": false})
+Rem 执行收藏**************************************************************
+
+iRet = WebBrowser.GoURL(hWeb,"http://www.rqgongjiang.com/member/tb/sc/sssc",true,@ui"块级元素<div>_收藏任务",30000,{"bContinueOnError":false,"iDelayAfter":300,"iDelayBefore":200})
+Mouse.Action({
+	"wnd":[
+		{
+			"cls":"Chrome_WidgetWin_1",
+			"title":"*",
+			"app":"msedge"
+		},
+		{
+			"cls":"Chrome_RenderWidgetHostHWND",
+			"title":"Chrome Legacy Window"
+		}
+	],
+	"html":[
+		{
+			"tag":"INPUT",
+			"type":"text"
+		}
+	]
+},"left","click",10000,{"bContinueOnError": false, "iDelayAfter": 300, "iDelayBefore": 200, "bSetForeground": true, "sCursorPosition": "Center", "iCursorOffsetX": 0, "iCursorOffsetY": 0, "sKeyModifiers": [],"sSimulate": "simulate", "bMoveSmoothly": false})
+Keyboard.Press("V", "press", ["Ctrl"],{"iDelayAfter": 500, "iDelayBefore": 300, "sSimulate": "simulate"})
+Mouse.Action(@ui"标注<label>_开始时间1","left","click",10000,{"bContinueOnError": false, "iDelayAfter": 300, "iDelayBefore": 200, "bSetForeground": true, "sCursorPosition": "Center", "iCursorOffsetX": 0, "iCursorOffsetY": 0, "sKeyModifiers": [],"sSimulate": "simulate", "bMoveSmoothly": false})
+
+Mouse.Action({
+	"wnd":[
+		{
+			"cls":"Chrome_WidgetWin_1",
+			"title":"*",
+			"app":"msedge"
+		},
+		{
+			"cls":"Chrome_RenderWidgetHostHWND",
+			"title":"Chrome Legacy Window"
+		}
+	],
+	"html":[
+		{
+			"tag":"INPUT",
+			"parentid":"__layout",
+			"css-selector":"body>div>div>div>section>section>main>div>div>div>div>div>div>div>div>form>div>div>div>div>div>span>span>div>input"
+		}
+	]
+},"left","click",10000,{"bContinueOnError": false, "iDelayAfter": 300, "iDelayBefore": 200, "bSetForeground": true, "sCursorPosition": "Center", "iCursorOffsetX": 0, "iCursorOffsetY": 0, "sKeyModifiers": [],"sSimulate": "simulate", "bMoveSmoothly": false})
+Keyboard.InputText({
+	"wnd":[
+		{
+			"cls":"Chrome_WidgetWin_1",
+			"title":"*",
+			"app":"msedge"
+		},
+		{
+			"cls":"Chrome_RenderWidgetHostHWND",
+			"title":"Chrome Legacy Window"
+		}
+	],
+	"html":[
+		{
+			"tag":"INPUT",
+			"parentid":"__layout",
+			"css-selector":"body>div>div>div>section>section>main>div>div>div>div>div>div>div>div>form>div>div>div>div>div>span>span>div>input"
+		}
+	]
+},sRet,true,20,10000,{"bContinueOnError": false, "iDelayAfter": 300, "iDelayBefore": 500, "bSetForeground": true, "sSimulate": "message", "bValidate": false, "bClickBeforeInput": false})
+Mouse.Action(@ui"按钮<button>_清除","left","click",10000,{"bContinueOnError": false, "iDelayAfter": 300, "iDelayBefore": 200, "bSetForeground": true, "sCursorPosition": "Center", "iCursorOffsetX": 0, "iCursorOffsetY": 0, "sKeyModifiers": [],"sSimulate": "simulate", "bMoveSmoothly": false})
+n=0
+For i = 0 To UBound(arr)
+	If CInt(arr[i][2])>0 
+		n=n+1
+	End If
+Next
+
+For ishouc = 1 To n-1
+If n<=1
+	Break
+Else 
+    Mouse.Action(@ui"按钮<button>3","left","click",10000,{"bContinueOnError": false, "iDelayAfter": 0, "iDelayBefore": 50, "bSetForeground": true, "sCursorPosition": "Center", "iCursorOffsetX": 0, "iCursorOffsetY": 0, "sKeyModifiers": [],"sSimulate": "simulate", "bMoveSmoothly": false})
+End If
+Next
+
+ishoucl=1
+
+ishoucg=0
+For i = 0 To UBound(arr)
+	If CInt(arr[i][2])=0 
+	Continue
+	Else 
+    Keyboard.InputText({
+	"wnd":[
+		{
+			"cls":"Chrome_WidgetWin_1",
+			"title":"*",
+			"app":"msedge"
+		},
+		{
+			"cls":"Chrome_RenderWidgetHostHWND",
+			"title":"Chrome Legacy Window"
+		}
+	],
+	"html":[
+		{
+			"tag":"INPUT",
+			"type":"text",
+			"css-selector":"body>div>div>div>section>section>main>div>div>div>div>div>div>div>div>form>div>div>div>div>div>div>div>div>div>div>span>div>div>input",
+			"idx":ishoucg
+		}
+	]
+},arr[i][0],true,20,10000,{"bContinueOnError": false, "iDelayAfter": 50, "iDelayBefore": 50, "bSetForeground": true, "sSimulate": "message", "bValidate": false, "bClickBeforeInput": false})
+    Keyboard.InputText({
+	"wnd":[
+		{
+			"cls":"Chrome_WidgetWin_1",
+			"title":"*",
+			"app":"msedge"
+		},
+		{
+			"cls":"Chrome_RenderWidgetHostHWND",
+			"title":"Chrome Legacy Window"
+		}
+	],
+	"html":[
+		{
+			"tag":"INPUT",
+			"css-selector":"body>div>div>div>section>section>main>div>div>div>div>div>div>div>div>form>div>div>div>div>div>div>div>div>div>div>span>div>div>input",
+			"idx":ishoucl
+		}
+	]
+},arr[i][2],true,20,10000,{"bContinueOnError": false, "iDelayAfter": 50, "iDelayBefore": 50, "bSetForeground": true, "sSimulate": "message", "bValidate": false, "bClickBeforeInput": false})
+    ishoucl=ishoucl+3
+
+	End If
+ishoucg=ishoucg+1
+Next
+
+
+Mouse.Action({
+	"wnd":[
+		{
+			"cls":"Chrome_WidgetWin_1",
+			"title":"*",
+			"app":"msedge"
+		},
+		{
+			"cls":"Chrome_RenderWidgetHostHWND",
+			"title":"Chrome Legacy Window"
+		}
+	],
+	"html":[
+		{
+			"tag":"BUTTON",
+			"aaname":"1天"
+		}
+	]
+},"left","click",10000,{"bContinueOnError": false, "iDelayAfter": 300, "iDelayBefore": 200, "bSetForeground": true, "sCursorPosition": "Center", "iCursorOffsetX": 0, "iCursorOffsetY": 0, "sKeyModifiers": [],"sSimulate": "simulate", "bMoveSmoothly": false})
+Mouse.Action(@ui"按钮<button>_发布任务1","left","click",10000,{"bContinueOnError": false, "iDelayAfter": 300, "iDelayBefore": 200, "bSetForeground": true, "sCursorPosition": "Center", "iCursorOffsetX": 0, "iCursorOffsetY": 0, "sKeyModifiers": [],"sSimulate": "simulate", "bMoveSmoothly": false})
+
+Mouse.Action(@ui"按钮<button>_确认","left","click",10000,{"bContinueOnError": false, "iDelayAfter": 300, "iDelayBefore": 1000, "bSetForeground": true, "sCursorPosition": "Center", "iCursorOffsetX": 0, "iCursorOffsetY": 0, "sKeyModifiers": [],"sSimulate": "simulate", "bMoveSmoothly": false})
+Rem 执行加购**************************************************************
+
+iRet = WebBrowser.GoURL(hWeb,"http://www.rqgongjiang.com/member/tb/jg/ssjg",true,@ui"块级元素<div>_淘宝任务",30000,{"bContinueOnError":false,"iDelayAfter":300,"iDelayBefore":200})
+Mouse.Action({
+	"wnd":[
+		{
+			"cls":"Chrome_WidgetWin_1",
+			"title":"*",
+			"app":"msedge"
+		},
+		{
+			"cls":"Chrome_RenderWidgetHostHWND",
+			"title":"Chrome Legacy Window"
+		}
+	],
+	"html":[
+		{
+			"tag":"INPUT",
+			"type":"text"
+		}
+	]
+},"left","click",10000,{"bContinueOnError": false, "iDelayAfter": 300, "iDelayBefore": 200, "bSetForeground": true, "sCursorPosition": "Center", "iCursorOffsetX": 0, "iCursorOffsetY": 0, "sKeyModifiers": [],"sSimulate": "simulate", "bMoveSmoothly": false})
+Keyboard.Press("V", "press", ["Ctrl"],{"iDelayAfter": 500, "iDelayBefore": 300, "sSimulate": "simulate"})
+Mouse.Action(@ui"标注<label>_开始时间1","left","click",10000,{"bContinueOnError": false, "iDelayAfter": 300, "iDelayBefore": 200, "bSetForeground": true, "sCursorPosition": "Center", "iCursorOffsetX": 0, "iCursorOffsetY": 0, "sKeyModifiers": [],"sSimulate": "simulate", "bMoveSmoothly": false})
+
+Mouse.Action({
+	"wnd":[
+		{
+			"cls":"Chrome_WidgetWin_1",
+			"title":"*",
+			"app":"msedge"
+		},
+		{
+			"cls":"Chrome_RenderWidgetHostHWND",
+			"title":"Chrome Legacy Window"
+		}
+	],
+	"html":[
+		{
+			"tag":"INPUT",
+			"parentid":"__layout",
+			"css-selector":"body>div>div>div>section>section>main>div>div>div>div>div>div>div>div>form>div>div>div>div>div>span>span>div>input"
+		}
+	]
+},"left","click",10000,{"bContinueOnError": false, "iDelayAfter": 300, "iDelayBefore": 200, "bSetForeground": true, "sCursorPosition": "Center", "iCursorOffsetX": 0, "iCursorOffsetY": 0, "sKeyModifiers": [],"sSimulate": "simulate", "bMoveSmoothly": false})
+Keyboard.InputText({
+	"wnd":[
+		{
+			"cls":"Chrome_WidgetWin_1",
+			"title":"*",
+			"app":"msedge"
+		},
+		{
+			"cls":"Chrome_RenderWidgetHostHWND",
+			"title":"Chrome Legacy Window"
+		}
+	],
+	"html":[
+		{
+			"tag":"INPUT",
+			"parentid":"__layout",
+			"css-selector":"body>div>div>div>section>section>main>div>div>div>div>div>div>div>div>form>div>div>div>div>div>span>span>div>input"
+		}
+	]
+},sRet,true,20,10000,{"bContinueOnError": false, "iDelayAfter": 300, "iDelayBefore": 500, "bSetForeground": true, "sSimulate": "message", "bValidate": false, "bClickBeforeInput": false})
+Mouse.Action(@ui"按钮<button>_清除","left","click",10000,{"bContinueOnError": false, "iDelayAfter": 300, "iDelayBefore": 200, "bSetForeground": true, "sCursorPosition": "Center", "iCursorOffsetX": 0, "iCursorOffsetY": 0, "sKeyModifiers": [],"sSimulate": "simulate", "bMoveSmoothly": false})
+n=0
+For i = 0 To UBound(arr)
+	If CInt(arr[i][3])>0 
+		n=n+1
+	End If
+Next
+For igg = 1 To n-1
+If n<=1
+	Break
+Else 
+    Mouse.Action(@ui"按钮<button>3","left","click",10000,{"bContinueOnError": false, "iDelayAfter": 0, "iDelayBefore": 50, "bSetForeground": true, "sCursorPosition": "Center", "iCursorOffsetX": 0, "iCursorOffsetY": 0, "sKeyModifiers": [],"sSimulate": "simulate", "bMoveSmoothly": false})
+end if
+Next
+iggl=1
+iggg=0
+For i = 0 To UBound(arr)
+	If CInt(arr[i][3])=0 
+	Continue
+	Else 
+    Keyboard.InputText({
+	"wnd":[
+		{
+			"cls":"Chrome_WidgetWin_1",
+			"title":"*",
+			"app":"msedge"
+		},
+		{
+			"cls":"Chrome_RenderWidgetHostHWND",
+			"title":"Chrome Legacy Window"
+		}
+	],
+	"html":[
+		{
+			"tag":"INPUT",
+			"type":"text",
+			"css-selector":"body>div>div>div>section>section>main>div>div>div>div>div>div>div>div>form>div>div>div>div>div>div>div>div>div>div>span>div>div>input",
+			"idx":iggg
+		}
+	]
+},arr[i][0],true,20,10000,{"bContinueOnError": false, "iDelayAfter": 50, "iDelayBefore": 50, "bSetForeground": true, "sSimulate": "message", "bValidate": false, "bClickBeforeInput": false})
+    Keyboard.InputText({
+	"wnd":[
+		{
+			"cls":"Chrome_WidgetWin_1",
+			"title":"*",
+			"app":"msedge"
+		},
+		{
+			"cls":"Chrome_RenderWidgetHostHWND",
+			"title":"Chrome Legacy Window"
+		}
+	],
+	"html":[
+		{
+			"tag":"INPUT",
+			"css-selector":"body>div>div>div>section>section>main>div>div>div>div>div>div>div>div>form>div>div>div>div>div>div>div>div>div>div>span>div>div>input",
+			"idx":iggl
+		}
+	]
+},arr[i][3],true,20,10000,{"bContinueOnError": false, "iDelayAfter": 50, "iDelayBefore": 50, "bSetForeground": true, "sSimulate": "message", "bValidate": false, "bClickBeforeInput": false})
+    iggl=iggl+3
+	End If
+	iggg=iggg+1
+Next
+
+
+
+
+
+
+Mouse.Action({
+	"wnd":[
+		{
+			"cls":"Chrome_WidgetWin_1",
+			"title":"*",
+			"app":"msedge"
+		},
+		{
+			"cls":"Chrome_RenderWidgetHostHWND",
+			"title":"Chrome Legacy Window"
+		}
+	],
+	"html":[
+		{
+			"tag":"BUTTON",
+			"aaname":"1天"
+		}
+	]
+},"left","click",10000,{"bContinueOnError": false, "iDelayAfter": 300, "iDelayBefore": 200, "bSetForeground": true, "sCursorPosition": "Center", "iCursorOffsetX": 0, "iCursorOffsetY": 0, "sKeyModifiers": [],"sSimulate": "simulate", "bMoveSmoothly": false})
+Mouse.Action(@ui"按钮<button>_发布任务1","left","click",10000,{"bContinueOnError": false, "iDelayAfter": 300, "iDelayBefore": 200, "bSetForeground": true, "sCursorPosition": "Center", "iCursorOffsetX": 0, "iCursorOffsetY": 0, "sKeyModifiers": [],"sSimulate": "simulate", "bMoveSmoothly": false})
+
+Mouse.Action(@ui"按钮<button>_确认","left","click",10000,{"bContinueOnError": false, "iDelayAfter": 300, "iDelayBefore": 1000, "bSetForeground": true, "sCursorPosition": "Center", "iCursorOffsetX": 0, "iCursorOffsetY": 0, "sKeyModifiers": [],"sSimulate": "simulate", "bMoveSmoothly": false})
+Rem 执行删除工作表
+arr=[]
+brr=[]
+处理完的工作表 = Excel.CurrentSheet(objExcelWorkBook,true)
+Excel.DeleteSheet(objExcelWorkBook,处理完的工作表,false)
+工作表名称 = Excel.GetSheetsName(objExcelWorkBook)
+工作表数 = UBound(工作表名称)
+
+TracePrint(工作表名称)
+TracePrint(工作表数)
+Loop
+t1=Time.Timer()
+TracePrint("运行时间："&t1-t0)
