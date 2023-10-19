@@ -1,0 +1,79 @@
+Dim objPoint,temp,bRet,zz,objWindow
+zz = 1
+For i = 0 To 20 step 1
+
+Mouse.Move(1299, 942, false,{"iDelayAfter": 60, "iDelayBefore": 60})
+Mouse.Click("right", "click", [],{"iDelayAfter": 50, "iDelayBefore": 50})
+bRet = UiElement.Exists({
+	"wnd":[
+		{
+			"cls":"Chrome_WidgetWin_1",
+			"title":"*",
+			"app":"chrome"
+		},
+		{
+			"cls":"Chrome_RenderWidgetHostHWND",
+			"title":"Chrome Legacy Window"
+		}
+	],
+	"html":[
+		{
+			"tag":"DIV",
+			"parentid":"bubble-contextmenu",
+			"idx":2
+		}
+	]
+},{"bContinueOnError":false,"iDelayAfter":50,"iDelayBefore":50})
+TracePrint(bRet)
+If bRet= false
+
+Mouse.Click("left", "click", [],{"iDelayAfter": 50, "iDelayBefore": 50})
+
+Keyboard.Press("PageUp", "press", [],{"iDelayAfter": 300, "iDelayBefore": 200, "sSimulate": "simulate"})
+Mouse.Click("right", "click", [],{"iDelayAfter": 50, "iDelayBefore": 50})
+End If
+Mouse.Action({
+	"wnd":[
+		{
+			"cls":"Chrome_WidgetWin_1",
+			"title":"*",
+			"app":"chrome"
+		},
+		{
+			"cls":"Chrome_RenderWidgetHostHWND",
+			"title":"Chrome Legacy Window"
+		}
+	],
+	"html":[
+		{
+			"tag":"DIV",
+			"parentid":"bubble-contextmenu",
+			"idx":2
+		}
+	]
+},"left","click",10000,{"bContinueOnError": false, "iDelayAfter": 50, "iDelayBefore": 50, "bSetForeground": true, "sCursorPosition": "Center", "iCursorOffsetX": 0, "iCursorOffsetY": 0, "sKeyModifiers": [],"sSimulate": "simulate", "bMoveSmoothly": false})
+Mouse.Action({
+	"wnd":[
+		{
+			"cls":"Chrome_WidgetWin_1",
+			"title":"*",
+			"app":"chrome"
+		},
+		{
+			"cls":"Chrome_RenderWidgetHostHWND",
+			"title":"Chrome Legacy Window"
+		}
+	],
+	"html":[
+		{
+			"tag":"DIV",
+			"isleaf":"1",
+			"css-selector":"body>div>div>div>button>div"
+		}
+	]
+},"left","click",10000,{"bContinueOnError": false, "iDelayAfter": 50, "iDelayBefore": 50, "bSetForeground": true, "sCursorPosition": "Center", "iCursorOffsetX": 0, "iCursorOffsetY": 0, "sKeyModifiers": [],"sSimulate": "simulate", "bMoveSmoothly": false})
+zz = zz+1
+
+TracePrint(zz)
+Dialog.Notify(zz, "Laiye Automation", 0)
+Next
