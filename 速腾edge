@@ -1,0 +1,19 @@
+Dim objExcelWorkBook,arrayRet,sRet
+objExcelWorkBook = Excel.BindBook("1031放单.xlsm")
+arrayRet = Excel.ReadColumn(objExcelWorkBook,"Sheet2","A1",true)
+Keyboard.InputText(@ui"可编辑文本_生成二维码,手淘宝扫一扫","375309346",true,20,10000,{"bContinueOnError": false, "iDelayAfter": 300, "iDelayBefore": 500, "bSetForeground": true, "sSimulate": "message", "bValidate": false, "bClickBeforeInput": false})
+Keyboard.Press("V", "press", ["Ctrl"],{"iDelayAfter": 300, "iDelayBefore": 200, "sSimulate": "simulate"})
+For Each kk In arrayRet
+
+
+Clipboard.SetText(kk)
+Mouse.Action(@ui"可编辑文本_宝贝ID","left","click",10000,{"bContinueOnError": false, "iDelayAfter": 300, "iDelayBefore": 200, "bSetForeground": true, "sCursorPosition": "Center", "iCursorOffsetX": 0, "iCursorOffsetY": 0, "sKeyModifiers": [],"sSimulate": "simulate", "bMoveSmoothly": false})
+Keyboard.Press("A", "press", ["Ctrl"],{"iDelayAfter": 300, "iDelayBefore": 200, "sSimulate": "simulate"})
+Keyboard.Press("Delete", "press", [],{"iDelayAfter": 300, "iDelayBefore": 200, "sSimulate": "simulate"})
+Keyboard.Press("V", "press", ["Ctrl"],{"iDelayAfter": 300, "iDelayBefore": 200, "sSimulate": "simulate"})
+
+Mouse.Action(@ui"窗格_神搜卡首屏v2.0.1.16","left","click",10000,{"bContinueOnError": false, "iDelayAfter": 300, "iDelayBefore": 200, "bSetForeground": true, "sCursorPosition": "Center", "iCursorOffsetX": 0, "iCursorOffsetY": 30, "sKeyModifiers": [],"sSimulate": "simulate", "bMoveSmoothly": false})
+
+Mouse.Action(@ui"窗格_神搜卡首屏v2.0.1.16","left","click",10000,{"bContinueOnError": false, "iDelayAfter": 300, "iDelayBefore": 200, "bSetForeground": true, "sCursorPosition": "Center", "iCursorOffsetX": 0, "iCursorOffsetY": 336, "sKeyModifiers": [],"sSimulate": "simulate", "bMoveSmoothly": false})
+Mouse.Action(@ui"窗口_确定","left","click",10000,{"bContinueOnError": false, "iDelayAfter": 300, "iDelayBefore": 200, "bSetForeground": true, "sCursorPosition": "Center", "iCursorOffsetX": 0, "iCursorOffsetY": 0, "sKeyModifiers": [],"sSimulate": "simulate", "bMoveSmoothly": false})
+Next
